@@ -4,15 +4,21 @@
 
 """
 Meme Object:
-	-Image
-	-Tags
-	-Popularity
+	-ImageLink (str)
+	-Tags (list Tags)
+	-Popularity (int)
 
 """
+Class Meme:
+	def __init__(self,imgLink,tagList,popularity=0):
+		self.imgLink = imgLink
+		self.tagList = tagList
+		self.popularity = popularity
+		
 
 """
 Connection > Database:
-	storeMeme(img,tagsList,popularity) - Database will create a new meme object and store it
+	storeMeme(imgLink,tagsList,popularity) - Database will create a new meme object and store it
 	getMeme(tagsList) - Database will return the most popular meme that best matches the tags (will harm popularity once used)
 	
 """
