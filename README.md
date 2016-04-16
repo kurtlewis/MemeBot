@@ -4,5 +4,5 @@ A bot for sending memes on request to users in different messaging apps. Created
 
 ### Current dependencies
 #### Python
-*Requests
-*Groupy
+* Requests
+* Groupy
