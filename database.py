@@ -81,7 +81,6 @@ def storeMeme(memeObj):
 			return
 		
 	#If meme does not match any in memeDB, add it then save and close memeDB
-	print("memeDB length: {}".format(len(memeDB)))
 	memeDB.append(memeObj)
 	closeMemeDB(memeDB)
 	
@@ -100,9 +99,11 @@ def getMeme(tagsList):
 			if any(currTag in tagsList for currTag in currMeme.tagsList):
 				matchingMemes.append(currMeme)
 	else:
+	
 		matchingMemes = memeDB
 	
 	if len(matchingMemes) == 0:
+		print("length of matchingMemes: {}".format(len(matchingMemes)))
 		return None
 	
 	#Sort by tag relevance and popularity
