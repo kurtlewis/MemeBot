@@ -36,3 +36,7 @@ Great work!
 #### Bot management script
 * Groupy
 * Pillow
+
+### Meme collecting script
+* praw
+* beautifulsoup4
