@@ -34,8 +34,9 @@ def downloadImage(imageUrl, localFileName):
 				
 				#Delete the file. It is useless to us. Return 1 for failure
 				os.remove(localFileName)
-				return 1
 				print('File %s doesn\'t exist. Removing...' % (localFileName))
+				return 1
+
 	return 0
 
 #------------------------------------------------------------------------------------------------------		
