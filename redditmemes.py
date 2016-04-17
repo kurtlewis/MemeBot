@@ -127,14 +127,14 @@ def getSomeMemes(subredditName, submissionCount):
 #------------------------------------------------------------------------------------------------------		
 		#If we don't have a direct link to the image, but we have a link to a page with only one image.
 		#This page also contains comments, related images section, share buttons, etc.
-		elif 'http://imgur.com/' in submission.url and ('.jpg' or '.png' or '.gif') not in submission.url:
+		elif 'http://imgur.com/' in submission.url and ('.jpg' and '.png' and '.gif') not in submission.url:
 			
 			#Get the html code for this page. We will parse it to find the imgur filename.
 			htmlSourceCode = requests.get(submission.url).text
 			
 			#Using beautifulsoup to make our file parsing easier
 			soup = BeautifulSoup(htmlSourceCode, 'html.parser')
-			
+			print(submission.url)
 			#This is the pattern we are looking for in the source to find the direct link to the image
 			imageUrl = soup.select('link')[10]['href']
 			
