@@ -27,7 +27,7 @@ def parseUserArguments(num):
 			choice = int(subredditChoice.read())
 			subredditChoice.close()
 			
-			sub = ["blackpeopletwitter","me_irl","meow_irl","notmyjob","memes","adviceanimals"]
+			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists","blackpeopletwitter"]
 				
 			#call Zach's function to get 20 memes
 			filenames = redditmemes.getSomeMemes(sub[choice], 20)	
@@ -51,7 +51,7 @@ def parseUserArguments(num):
 				
 				#concatenate to form link to image
 				if imgHost == "imgur":
-					link = "i.imgur.com/" + id + "." + extension			
+					link = "i.imgur.com/" + id			
 				#Populate object fields
 				popularity = 1
 				tagsList = [sub[choice]]
