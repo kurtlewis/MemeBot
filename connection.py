@@ -83,4 +83,4 @@ def parseUserArguments(num):
 	# if num = 1:
 		# #tell database to subtract one to the popularity
 		# updatePop(id, -1)
-parseUserArguments(1)
+#parseUserArguments(1)
