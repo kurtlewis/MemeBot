@@ -5,7 +5,7 @@ A bot for sending memes on request to users in different messaging apps. Created
 Using your favorite linux hosting service, make sure the dependencies below are installed.
 Your bot will recieve requests on a url of style 
 
-    "[Your domain name].com:[Open port]/GroupMe/"
+    "http://[Your domain name].com:[Open port]/GroupMe/"
 
 Clone this repository into a directory of your choosing.
 
