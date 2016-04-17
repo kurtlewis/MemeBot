@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import sys
+import os,sys,inspect
 import requests
 import json
 
@@ -31,10 +31,13 @@ def message(request):
 		text = text.lower()
 		if 'memebot' in text:
 			args = text.split(' ')
-			#memes from laura
-			csys.path.insert(0, '/home/ec2-user/MemeBot/MemeBot')
-			import connection.py
-			link = connection.parseUserArgument(1)
+			#memes from conncection
+			currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+			parentdir = os.path.dirname(currentdir)
+			parentdir = os.path.dirname(parentdir)
+			sys.path.insert(0, parentdir)
+			import connection
+			link = connection.parseUserArguments(1)
 
 			groupID = body['group_id']
 			botID = ""
