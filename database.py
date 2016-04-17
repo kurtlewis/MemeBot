@@ -16,10 +16,10 @@ class Meme:
 	#Merges the given meme with the meme object
 	def mergeMeme(self,memeObj):
 		#Add tagslists together
-		self.tagsList = self.tagsList + memeObj.tagsList
+		self.tagsList = memeObj.tagsList
 	
 		#Add popularity together
-		self.popularity += memeObj.popularity
+		self.popularity = memeObj.popularity
 		
 		
 	#Returns the number of tags in the intersection of the meme's tags list with the given tagsList
@@ -32,8 +32,11 @@ class Meme:
 		return matchCount
 		
 
-	
-
+#Prints a list of memes
+def printMemes(memeDB):
+	for meme in memeDB:
+		print("link: {}, popularity: {}".format(meme.imgLink,meme.popularity))
+		
 #This function will return the list of meme objects
 def openMemeDB():
 	if not os.path.exists("MemeDB.json"):
@@ -87,37 +90,38 @@ def storeMeme(memeObj):
 #This function will return a meme object that best suits the given tagsList
 def getMeme(tagsList):
 	memeDB = openMemeDB()
-	
+		
 	if len(tagsList) > 0:
 		matchingMemes = list()
 	
 		#Search memeDB for meme's matching tagslist
 		for currMeme in memeDB:
-			currMeme.popularity += 1
 			#If any tag in currMeme.tagsList is contained in the tagsList argument, add it to the matches list
 			if any(currTag in tagsList for currTag in currMeme.tagsList):
 				matchingMemes.append(currMeme)
 	else:
-		print("A null list was given. Searching whole database.")
 		matchingMemes = memeDB
 	
 	if len(matchingMemes) == 0:
-		print("length of matchingMemes: {}".format(len(matchingMemes)))
 		return None
 	
 	#Sort by tag relevance and popularity
 	for index,currMeme in enumerate(matchingMemes):
 		i = index
 		#While the current meme is not the first one (there is one above it) and has more matches than the one above
-		while i > 0 and matchingMemes[i].numTagMatches(tagsList) > matchingMemes[i-1].numTagMatches(tagsList) and matchingMemes[i].popularity > matchingMemes[i-1].popularity:
-			matchingMemes[i], matchingMemes[i-1] = matchingMemes[i-1], matchingMemes[i]
+		while i > 0 and matchingMemes[i].popularity > matchingMemes[i-1].popularity:
+			tmp = matchingMemes[i]
+			matchingMemes[i] = matchingMemes[i-1]
+			matchingMemes[i-1] = tmp
 			i-=1
 			
 	
-	#Return the best meme
-	print("matchingMemes popularity: {}".format(matchingMemes[0].popularity))
-	print("matchingMemes length: {}".format(len(matchingMemes)))
-	matchingMemes[0].popularity -= 10
+	#Update popularity
+	for meme in memeDB:
+		meme.popularity += 1
+		storeMeme(meme)
+	
+	#Return the best meme		
 	return matchingMemes[0]
 	
 	

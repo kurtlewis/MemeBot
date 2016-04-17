@@ -4,22 +4,16 @@ import database
 
 def parseUserArguments(num):
 	#set some defaults. Subject to change
-	acceptablePop = 10
+	acceptablePop = 20
 	nullList = list()
 	
 	
 	#check database for memes
 	for i in range (0, num):
 		newMeme = database.getMeme(nullList)
-		print("return popularity: {}".format(newMeme.popularity))
-	
-		#check usage, availability
-		if not (newMeme is None or newMeme.popularity < acceptablePop-10):
-			print("popularity: {} and acceptablePop: {}".format(newMeme.popularity, acceptablePop-10))
-		
-		if newMeme is None or newMeme.popularity < acceptablePop-10:
-			
-			#get meme from AWS
+
+		#check usage, availability		
+		if newMeme is None or newMeme.popularity <= acceptablePop:
 			
 			#cycle through subreddits. 
 			#Keep track of current subreddit in subFile.txt
@@ -41,7 +35,7 @@ def parseUserArguments(num):
 			subredditChoice.write(choice_s)
 			subredditChoice.close()
 			
-			for x in filenames:
+			for i,x in enumerate(filenames):
 				#parsing filename
 				extension = x.split(".")[-1]
 				source = x.split("_")[-7]
@@ -50,19 +44,24 @@ def parseUserArguments(num):
 				id = x.split("_")[-1]
 				
 				#concatenate to form link to image
-				if imgHost == "imgur":
-					link = "http://i.imgur.com/" + id			
+				link = "http://i.imgur.com/" + id
+				
 				#Populate object fields
-				popularity = 10
+				popularity = 25
 				tagsList = [sub[choice]]
 				
 				#create local object
-				newMeme = database.Meme(link,tagsList,popularity)
-				
+				if i != len(filenames)-1:
+					newMeme = database.Meme(link,tagsList,popularity)
+				else:
+					newMeme = database.Meme(link,tagsList,0)
 				#save to database
 				database.storeMeme(newMeme)
 			break
-			
+		else:
+			#If database meme is accepted
+			newMeme.popularity = 0
+			database.storeMeme(newMeme)
 		
 	#return meme link to bot
 	return newMeme.imgLink
