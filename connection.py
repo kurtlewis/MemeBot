@@ -4,7 +4,6 @@ import database
 
 def parseUserArguments(num):
 	#set some defaults. Subject to change
-	sizeDatabase = 100
 	acceptablePop = 10
 	nullList = list()
 	
@@ -14,7 +13,7 @@ def parseUserArguments(num):
 		newMeme = getMeme(nullList)
 	
 		#check usage, availability
-		if newMeme == None or newMeme.popularity < acceptablePop:
+		if newMeme == None or newMeme.popularity < acceptablePop-10:
 			
 			#get meme from AWS
 			
@@ -40,11 +39,11 @@ def parseUserArguments(num):
 			
 			for x in filenames:
 				#parsing filename
-				extension = filename.split(".")[-1]
-				source = filename.split("_")[-7]
-				subreddit = filename.split("_")[-6]
-				imgHost = filename.split("_")[-2]
-				id = filename.split("_")[-1]
+				extension = x.split(".")[-1]
+				source = x.split("_")[-7]
+				subreddit = x.split("_")[-6]
+				imgHost = x.split("_")[-2]
+				id = x.split("_")[-1]
 				
 				#concatenate to form link to image
 				if imgHost == "imgur":
