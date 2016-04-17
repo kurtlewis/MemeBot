@@ -65,7 +65,6 @@ def parseUserArguments(num):
 		
 	#return meme link to bot
 	return newMeme.imgLink
-<<<<<<< HEAD
 	
 # def evaluateFeedback(num): 
 	# #reads from file to see which ID the user is referring to
@@ -79,6 +78,3 @@ def parseUserArguments(num):
 		# #tell database to subtract one to the popularity
 		# updatePop(id, -1)
 parseUserArguments(1)
-=======
-	
->>>>>>> ce14b1c1ebefd1f69b613e17c92423dbe404e397
