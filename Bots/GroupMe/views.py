@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-
 from django.views.decorators.csrf import csrf_exempt
+import sys
 import requests
 import json
 
@@ -32,6 +32,9 @@ def message(request):
 		if 'memebot' in text:
 			args = text.split(' ')
 			#memes from laura
+			csys.path.insert(0, '/home/ec2-user/MemeBot/MemeBot')
+			import connection.py
+			link = connection.parseUserArgument(1)
 
 			groupID = body['group_id']
 			botID = ""
@@ -40,7 +43,7 @@ def message(request):
 				if groupID == bot.groupID:
 					botID = bot.botID
 					break
-			payload = {'bot_id': botID, 'text': 'Did someone request a meme :).'}
+			payload = {'bot_id': botID, 'text': 'Did someone request a meme? ' + link}
 
 			r = requests.post("https://api.groupme.com/v3/bots/post", data=payload)
 				

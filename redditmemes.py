@@ -134,9 +134,13 @@ def getSomeMemes(subredditName, submissionCount):
 			
 			#Using beautifulsoup to make our file parsing easier
 			soup = BeautifulSoup(htmlSourceCode, 'html.parser')
-			print(submission.url)
+			
 			#This is the pattern we are looking for in the source to find the direct link to the image
-			imageUrl = soup.select('link')[10]['href']
+			try:
+				imageUrl = soup.select('link')[10]['href']
+			except:
+				imageUrl = None
+				continue
 			
 			#If we don't have http:// in the link we found, we add it in (common issue).
 			if imageUrl.startswith('//'):
