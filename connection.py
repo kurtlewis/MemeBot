@@ -24,12 +24,12 @@ def parseUserArguments(num):
 			choice = int(subredditChoice.read())
 			subredditChoice.close()
 			
-			sub = ["blackpeopletwitter","me_irl","meow_irl","holdmybeer","notmyjob","memes","adviceanimals"]
+			sub = ["blackpeopletwitter","me_irl","meow_irl","notmyjob","memes","adviceanimals"]
 				
 			#call Zach's function to get 20 memes
 			filenames = redditmemes.getSomeMemes(sub[choice], 20)	
 				
-			if choice == 6:
+			if choice == 5:
 				choice = -1			
 			
 			#write value of next subreddit back to file	
