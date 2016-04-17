@@ -24,29 +24,19 @@ def parseUserArguments(num):
 			#Keep track of current subreddit in subFile.txt
 			subredditChoice = open('subFile.txt','r+')
 			choice = int(subredditChoice.read())
+			subredditChoice.close()
 			
-			if choice == 1:
-				sub = "blackpeopletwitter"
-			elif choice == 2:
-				sub = "me_irl"
-			elif == 3:
-				sub = "meow_irl"
-			elif choice == 4:
-				sub = "holdmybeer"
-			elif choice == 5:
-				sub = "notmyjob"
-			elif choice == 6:
-				sub = "memes"
-			elif choice == 7:
-				sub = "adviceanimals"
-				#set so it will cycle back through
-				choice =0
+			sub = ["blackpeopletwitter","me_irl","meow_irl","holdmybeer","notmyjob","memes","adviceanimals"]
+				
+			if choice == 6:
+				choice = -1
 				
 			#call Zach's function to get 20 memes
 			filenames = redditmemes.getSomeMemes(sub, 20)
 			
 			#write value of next subreddit back to file	
-			choice = repr(choice + 1)
+			choice = choice + 1
+			choice = repr(choice)
 			subredditChoice.write(choice)
 			subredditChoice.close()
 			
