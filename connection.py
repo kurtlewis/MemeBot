@@ -48,6 +48,7 @@ def parseUserArguments(num):
 				imgHost = x.split("_")[-2]
 				id = x.split("_")[-1]
 				
+				
 				#concatenate to form link to image
 				if imgHost == "imgur":
 					link = "http://i.imgur.com/" + id			
@@ -64,7 +65,7 @@ def parseUserArguments(num):
 			
 		
 	#return meme link to bot
-	return newMeme.imgLink
+	return "http://" +  newMeme.imgLink
 	
 # def evaluateFeedback(num): 
 	# #reads from file to see which ID the user is referring to
