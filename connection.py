@@ -11,6 +11,7 @@ def parseUserArguments(num):
 	#check database for memes
 	for i in range (0, num):
 		newMeme = database.getMeme(nullList)
+		print("return popularity: {}".format(newMeme.popularity))
 		#newMeme = None
 		#check usage, availability
 		
@@ -53,7 +54,7 @@ def parseUserArguments(num):
 				if imgHost == "imgur":
 					link = "i.imgur.com/" + id			
 				#Populate object fields
-				popularity = 1
+				popularity = 10
 				tagsList = [sub[choice]]
 				
 				#create local object
@@ -83,4 +84,4 @@ def parseUserArguments(num):
 	# if num = 1:
 		# #tell database to subtract one to the popularity
 		# updatePop(id, -1)
-#parseUserArguments(1)
+parseUserArguments(1)

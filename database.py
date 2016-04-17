@@ -99,7 +99,7 @@ def getMeme(tagsList):
 			if any(currTag in tagsList for currTag in currMeme.tagsList):
 				matchingMemes.append(currMeme)
 	else:
-	
+		print("A null list was given. Searching whole database.")
 		matchingMemes = memeDB
 	
 	if len(matchingMemes) == 0:
@@ -116,6 +116,8 @@ def getMeme(tagsList):
 			
 	
 	#Return the best meme
+	print("matchingMemes popularity: {}".format(matchingMemes[0].popularity))
+	print("matchingMemes length: {}".format(len(matchingMemes)))
 	matchingMemes[0].popularity -= 10
 	return matchingMemes[0]
 	
