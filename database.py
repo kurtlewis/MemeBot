@@ -76,7 +76,7 @@ def storeMeme(memeObj):
 	for currMeme in memeDB:
 		if currMeme.imgLink == memeObj.imgLink:
 			
-			currMeme.mergeMeme(currMeme,memeObj)
+			currMeme.mergeMeme(memeObj)
 			#If memes match, merge them then save the list then save and close memeDB
 			closeMemeDB(memeDB)
 			return
