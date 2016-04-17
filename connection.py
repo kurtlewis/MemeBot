@@ -8,7 +8,7 @@ def parseUserArguments(num):
 	acceptablePop = 10
 	
 	#create local object
-	newMeme = Meme()
+	newMeme = database.Meme()
 	newMeme = None
 	
 	#check database for memes
@@ -49,7 +49,7 @@ def parseUserArguments(num):
 				id = filename.split("_")[-1]
 				
 				#concatenate to form link to image
-				if imgHost = "imgur":
+				if imgHost == "imgur":
 					link = "i.imgur.com/" + id + "." + extension			
 				#Populate object fields
 				newMeme.awsDirectory
