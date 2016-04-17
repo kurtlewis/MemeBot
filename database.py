@@ -6,9 +6,8 @@ import os
 import jsonpickle
 
 class Meme:
-	def __init__(self,imgLink,imgPath,tagsList,popularity=1):
+	def __init__(self,imgLink,tagsList,popularity=1):
 		self.imgLink = imgLink
-		self.imgPath = imgPath
 		self.tagsList = tagsList
 		self.popularity = popularity
 	
@@ -31,10 +30,6 @@ class Meme:
 		
 		return matchCount
 		
-	#Returns json encoded version of object
-	
-		
-
 
 	
 
@@ -66,6 +61,9 @@ def closeMemeDB(memesList):
 	memeDbFile.write(jsonStr)
 	
 	memeDbFile.close()
+	
+
+#########################  Below are functions intended to be called externally by other scripts (above are functions used by this script)	
 	
 
 #This function will take a meme object put it into the list appropriately (may need to merge with existing meme)
@@ -103,7 +101,6 @@ def getMeme(tagsList):
 	if len(matchingMemes) == 0:
 		return None
 	
-	#Sort matchingMemes:
 	#Sort by tag relevance and popularity
 	for index,currMeme in enumerate(matchingMemes):
 		i = index
@@ -118,7 +115,7 @@ def getMeme(tagsList):
 	return matchingMemes[0]
 	
 	
-	
+
 	
 	
 	
