@@ -9,6 +9,7 @@ def parseUserArguments(num):
 	
 	#create local object
 	newMeme = Meme()
+	newMeme = None
 	
 	#check database for memes
 	for i in range (0, numMemes):
@@ -67,7 +68,7 @@ def parseUserArguments(num):
 				newMeme.tagsList = [sub]
 				
 				#save to database
-				storeMeme(newMeme):
+				#storeMeme(newMeme):
 			break
 			
 	#writes the ID of the returned meme to use in the evaluateFeedback function		
@@ -89,3 +90,5 @@ def parseUserArguments(num):
 	# if num = 1:
 		# #tell database to subtract one to the popularity
 		# updatePop(id, -1)
+		
+parseUserArguments(1)
