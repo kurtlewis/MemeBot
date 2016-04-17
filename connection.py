@@ -14,7 +14,6 @@ def parseUserArguments(num):
 
 		#check usage, availability		
 		if newMeme is None or newMeme.popularity <= acceptablePop:
-			
 			#cycle through subreddits. 
 			#Keep track of current subreddit in subFile.txt
 			subredditChoice = open('subFile.txt','r')
@@ -43,9 +42,10 @@ def parseUserArguments(num):
 				imgHost = x.split("_")[-2]
 				id = x.split("_")[-1]
 				
-				#concatenate to form link to image
-				link = "http://i.imgur.com/" + id
 				
+				#concatenate to form link to image
+
+				link = "http://i.imgur.com/" + id	
 				#Populate object fields
 				popularity = 25
 				tagsList = [sub[choice]]
@@ -58,11 +58,14 @@ def parseUserArguments(num):
 				#save to database
 				database.storeMeme(newMeme)
 			break
+
 		else:
 			#If database meme is accepted
 			newMeme.popularity = 0
 			database.storeMeme(newMeme)
 		
+
 	#return meme link to bot
 	return newMeme.imgLink
 	
+
