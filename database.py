@@ -5,6 +5,7 @@ import json
 import os
 import jsonpickle
 
+
 class Meme:
 	def __init__(self,imgLink,tagsList,popularity=1):
 		self.imgLink = imgLink
@@ -80,7 +81,6 @@ def storeMeme(memeObj):
 			return
 		
 	#If meme does not match any in memeDB, add it then save and close memeDB
-	print("memeDB length: {}".format(len(memeDB)))
 	memeDB.append(memeObj)
 	closeMemeDB(memeDB)
 	
@@ -89,14 +89,18 @@ def storeMeme(memeObj):
 def getMeme(tagsList):
 	memeDB = openMemeDB()
 	
-	matchingMemes = list()
+	if len(tagsList) > 0:
+		matchingMemes = list()
 	
-	#Search memeDB for meme's matching tagslist
-	for currMeme in memeDB:
-		currMeme.popularity += 1
-		#If any tag in currMeme.tagsList is contained in the tagsList argument, add it to the matches list
-		if any(currTag in tagsList for currTag in currMeme.tagsList):
-			matchingMemes.append(currMeme)
+		#Search memeDB for meme's matching tagslist
+		for currMeme in memeDB:
+			currMeme.popularity += 1
+			#If any tag in currMeme.tagsList is contained in the tagsList argument, add it to the matches list
+			if any(currTag in tagsList for currTag in currMeme.tagsList):
+				matchingMemes.append(currMeme)
+	else:
+	
+		matchingMemes = memeDB
 	
 	if len(matchingMemes) == 0:
 		print("length of matchingMemes: {}".format(len(matchingMemes)))
