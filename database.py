@@ -66,7 +66,6 @@ def closeMemeDB(memesList):
 
 #########################  Below are functions intended to be called externally by other scripts (above are functions used by this script)	
 	
-
 #This function will take a meme object put it into the list appropriately (may need to merge with existing meme)
 def storeMeme(memeObj):
 	memeDB = openMemeDB()
