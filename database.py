@@ -99,6 +99,7 @@ def getMeme(tagsList):
 			matchingMemes.append(currMeme)
 	
 	if len(matchingMemes) == 0:
+		print("length of matchingMemes: {}".format(len(matchingMemes)))
 		return None
 	
 	#Sort by tag relevance and popularity
