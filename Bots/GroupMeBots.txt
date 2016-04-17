@@ -1,4 +1,2 @@
 #Format as follows:
 #GroupID, BotID
-21336345, 6d6ba25b737f0906bc0c36ea39
-21344602, 4188405e83a91de13dbfd9b794
