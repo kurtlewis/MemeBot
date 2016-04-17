@@ -11,7 +11,7 @@ class Bot:
 		self.botID = botID
 
 def getBots():
-	file = open('GroupMeBots.txt', 'r')
+	file = open('Bots/GroupMeBots.txt', 'r')
 	bots = list()
 	for line in file:
 		if ('#' != line[0]):
