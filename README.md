@@ -19,7 +19,7 @@ Add a new line to Bots/GroupMeBots.txt with the Bot's Group ID and Bot ID, forma
     [GroupID], [Bot ID]
 
 Start your server on a port you specified earlier:
-    Bots/$python manage.py runserver 0.0.0.0:[PORT]
+    $python Bots/manage.py runserver 0.0.0.0:[PORT]
 
 Your server will now interpret messages for every bot you specified in Bots/GroupMeBots.txt.
 
