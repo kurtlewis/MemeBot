@@ -11,12 +11,9 @@ def parseUserArguments(num):
 	#check database for memes
 	for i in range (0, num):
 		newMeme = database.getMeme(nullList)
-		print("return popularity: {}".format(newMeme.popularity))
-		#check usage, availability
-		if not (newMeme is None or newMeme.popularity < acceptablePop-10):
-			print("popularity: {} and acceptablePop: {}".format(newMeme.popularity, acceptablePop-10))
 		
-		if newMeme is None or newMeme.popularity < acceptablePop-10:
+		#check usage, availability
+		if newMeme is None or newMeme.popularity < acceptablePop-5:
 			
 			#get meme from AWS
 			
@@ -50,8 +47,7 @@ def parseUserArguments(num):
 				
 				
 				#concatenate to form link to image
-				if imgHost == "imgur":
-					link = "http://i.imgur.com/" + id			
+				link = "http://i.imgur.com/" + id			
 				#Populate object fields
 				popularity = 10
 				tagsList = [sub[choice]]
@@ -62,20 +58,8 @@ def parseUserArguments(num):
 				#save to database
 				database.storeMeme(newMeme)
 			break
-			
-		
+				
 	#return meme link to bot
-	return "http://" +  newMeme.imgLink
+	return newMeme.imgLink
 	
-# def evaluateFeedback(num): 
-	# #reads from file to see which ID the user is referring to
-	# memeID = open('subredditChoiceFile','r')
-	# id = memeID.read()
-	# memeID.close()
-	# if num == 0:
-		# #tell database to add one to the popularity
-		# updatePop(id, 1)
-	# if num = 1:
-		# #tell database to subtract one to the popularity
-		# updatePop(id, -1)
-parseUserArguments(1)
+
