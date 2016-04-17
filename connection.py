@@ -6,48 +6,36 @@ def parseUserArguments(num):
 	#set some defaults. Subject to change
 	sizeDatabase = 100
 	acceptablePop = 10
+	nullList = list()
 	
-	#create local object
-	newMeme = Meme()
-	newMeme = None
 	
 	#check database for memes
-	for i in range (0, numMemes):
+	for i in range (0, num):
 		newMeme = getMeme(nullList)
 	
 		#check usage, availability
-		if newMeme.popularity < acceptablePop or newMeme == None:
+		if newMeme == None or newMeme.popularity < acceptablePop:
 			
 			#get meme from AWS
 			
 			#cycle through subreddits. 
 			#Keep track of current subreddit in subFile.txt
-			subredditChoice = open('subFile.txt','r+')
+			subredditChoice = open('subFile.txt','r')
 			choice = int(subredditChoice.read())
+			subredditChoice.close()
 			
-			if choice == 1:
-				sub = "blackpeopletwitter"
-			elif choice == 2:
-				sub = "me_irl"
-			elif == 3:
-				sub = "meow_irl"
-			elif choice == 4:
-				sub = "holdmybeer"
-			elif choice == 5:
-				sub = "notmyjob"
-			elif choice == 6:
-				sub = "memes"
-			elif choice == 7:
-				sub = "adviceanimals"
-				#set so it will cycle back through
-				choice =0
+			sub = ["blackpeopletwitter","me_irl","meow_irl","notmyjob","memes","adviceanimals"]
 				
 			#call Zach's function to get 20 memes
-			filenames = redditmemes.getSomeMemes(sub, 20)
+			filenames = redditmemes.getSomeMemes(sub[choice], 20)	
+				
+			if choice == 5:
+				choice = -1			
 			
 			#write value of next subreddit back to file	
-			choice = repr(choice + 1)
-			subredditChoice.write(choice)
+			choice_s = repr(choice+1)
+			subredditChoice = open('subFile.txt','w')
+			subredditChoice.write(choice_s)
 			subredditChoice.close()
 			
 			for x in filenames:
@@ -59,25 +47,27 @@ def parseUserArguments(num):
 				id = filename.split("_")[-1]
 				
 				#concatenate to form link to image
-				if imgHost = "imgur":
+				if imgHost == "imgur":
 					link = "i.imgur.com/" + id + "." + extension			
 				#Populate object fields
-				newMeme.awsDirectory
-				newMeme.imgLink = link
-				newMeme.popularity = 1
-				newMeme.tagsList = [sub]
+				popularity = 1
+				tagsList = [sub[choice]]
+				
+				#create local object
+				newMeme = database.Meme(link,tagsList,popularity)
 				
 				#save to database
-				#storeMeme(newMeme):
+				storeMeme(newMeme)
 			break
 			
 	#writes the ID of the returned meme to use in the evaluateFeedback function		
-	memeID = open('memeID.txt','w')
-	memeID.write(newMeme.id)
-	memeID.close()
+	
+	# memeID = open('memeID.txt','w')
+	# memeID.write(newMeme.id)
+	# memeID.close()
 		
-	#return meme to bot
-	return newMeme
+	#return meme link to bot
+	return newMeme.link
 	
 # def evaluateFeedback(num): 
 	# #reads from file to see which ID the user is referring to
@@ -91,4 +81,3 @@ def parseUserArguments(num):
 		# #tell database to subtract one to the popularity
 		# updatePop(id, -1)
 		
-parseUserArguments(1)
