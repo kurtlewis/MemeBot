@@ -11,13 +11,14 @@ class Bot:
 		self.botID = botID
 
 def getBots():
-	file = open('bots.txt', 'r')
+	file = open('GroupMeBots.txt', 'r')
 	bots = list()
 	for line in file:
-		#line = line.strip('\n')
-		IDs = line.split(", ")
-		bots.append(Bot(IDs[0], IDs[1]))
-	close('bots.txt')
+		if ('#' != line[0]):
+			line = line.strip('\n')
+			IDs = line.split(", ")
+			bots.append(Bot(IDs[0], IDs[1]))
+	file.close()
 	return bots
 
 # Create your views here.
@@ -27,24 +28,21 @@ def message(request):
 		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
 		text = body['text']
-		print(text)
 		text = text.lower()
 		if 'memebot' in text:
-			#args = text.split(' ')
+			args = text.split(' ')
 			#memes from laura
 
-			#groupID = body['group_id']
+			groupID = body['group_id']
 			botID = ""
 			bots = getBots()
-			"""
 			for bot in bots:
 				if groupID == bot.groupID:
 					botID = bot.botID
 					break
-			"""
-			#payload = {'bot_id': botID, 'text': 'Hey this bot requested a meme.'}
+			payload = {'bot_id': botID, 'text': 'Did someone request a meme :).'}
 
-			#r = requests.post("https://api.groupme.com/v3/bots/post", data=payload)
+			r = requests.post("https://api.groupme.com/v3/bots/post", data=payload)
 				
-			r = requests.post("https://api.groupme.com/v3/bots/post?bot_id=6d6ba25b737f0906bc0c36ea39&text=dank+memes+from+page")
+			#r = requests.post("https://api.groupme.com/v3/bots/post?bot_id=6d6ba25b737f0906bc0c36ea39&text=dank+memes+from+page")
 	return HttpResponse("Hello, world. You are at the views for this")
