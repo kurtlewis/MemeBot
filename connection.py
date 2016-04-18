@@ -51,10 +51,10 @@ def parseUserArguments(num):
 				tagsList = [sub[choice]]
 				
 				#create local object
-				if i != len(filenames)-1:
-					newMeme = database.Meme(link,tagsList,popularity)
-				else:
-					newMeme = database.Meme(link,tagsList,0)
+				# if i != len(filenames)-1:
+					# newMeme = database.Meme(link,tagsList,popularity)
+				# else:
+				newMeme = database.Meme(link,tagsList,0)
 				#save to database
 				database.storeMeme(newMeme)
 			break
