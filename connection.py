@@ -22,8 +22,8 @@ def parseUserArguments(num):
 			
 			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists"]
 				
-			#call Zach's function to get 20 memes
-			filenames = redditmemes.getSomeMemes(sub[choice], 20)	
+			#call Zach's function to get 7 memes
+			filenames = redditmemes.getSomeMemes(sub[choice], 7)	
 				
 			if choice == 4:
 				choice = -1			
