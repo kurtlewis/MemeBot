@@ -124,6 +124,12 @@ def getMeme(tagsList):
 	#Return the best meme		
 	return matchingMemes[0]
 	
+	#This function will clear the database
+def flushDatabase():
+
+	#Open the json and overwrite with an empty json
+	memeDB = open("MemeDB.json","w")
+	memeDB.write("[]")
 	
 
 	
