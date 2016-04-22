@@ -43,14 +43,11 @@ def parseUserArguments(num):
 				else:
 					source = x.split("_")[-7]	
 				imgHost = x.split("_")[-2]
-				#id.insert(i, x.split("_")[-1])
 				id = x.split("_")[-1]
 				
 				#concatenate to form link to image
-			#list.sort(id)
-			#for x in id:
-				link = "http://i.imgur.com/" + id #str(id[i])	
-				#print("link: ", link)
+				link = "http://i.imgur.com/" + id 
+				
 				#Populate object fields
 				popularity = 25
 				tagsList = subreddit
@@ -64,14 +61,12 @@ def parseUserArguments(num):
 			
 			m=1
 			n = 2
-			count = 0
 			while n < 6:
 				database.storeMeme(newMeme[m])
 				m += 4
 				if m > len(newMeme)-1:
 					m = n
 					n += 1
-				count += 1
 				
 			return newMeme[1].imgLink
 
@@ -84,4 +79,3 @@ def parseUserArguments(num):
 	#return meme link to bot
 	return newMeme[0].imgLink
 	
-parseUserArguments(1)
