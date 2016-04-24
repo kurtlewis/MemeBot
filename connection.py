@@ -16,6 +16,9 @@ def parseUserArguments(num):
 			#Keep track of current subreddit in subFile.txt
 			with open('subFile.txt','r') as subredditChoice:
 				choice = int(subredditChoice.read())
+				
+			if choice is not 0 or choice is not 3:
+				choice = 0
 			
 			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists", "memes"]
 				
