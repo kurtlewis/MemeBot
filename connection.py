@@ -20,9 +20,9 @@ def parseUserArguments(num):
 			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists", "memes"]
 				
 			#call Zach's function to get 7 memes
-			filenames = redditmemes.getSomeMemes(sub[choice], 7)
-			filenames += redditmemes.getSomeMemes(sub[choice+1],7)
-			filenames += redditmemes.getSomeMemes(sub[choice+2],7)
+			filenames = redditmemes.getSomeMemes(sub[choice], 10)
+			filenames += redditmemes.getSomeMemes(sub[choice+1],10)
+			filenames += redditmemes.getSomeMemes(sub[choice+2],10)
 			
 			if choice + 3 >= 5:
 				choice = -3			
@@ -61,9 +61,9 @@ def parseUserArguments(num):
 			
 			m=1
 			n = 2
-			while n < 6:
+			while n < 9:
 				database.storeMeme(newMeme[m])
-				m += 4
+				m += 7
 				if m > len(newMeme)-1:
 					m = n
 					n += 1
@@ -78,4 +78,4 @@ def parseUserArguments(num):
 
 	#return meme link to bot
 	return newMeme[0].imgLink
-	
+parseUserArguments(1)
