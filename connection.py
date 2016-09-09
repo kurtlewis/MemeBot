@@ -17,21 +17,27 @@ def parseUserArguments(num):
 			with open('subFile.txt','r') as subredditChoice:
 				choice = int(subredditChoice.read())
 				
-			if choice is not 0 or choice is not 3:
-				choice = 0
 			
 			sub = ["me_irl","meow_irl","woofbarkwoof","notmyjob","firstworldanarchists", "memes"]
 				
-			#call Zach's function to get 7 memes
+			#call Zach's function to get 30 memes
+			if choice > 5:
+				choice = 0
 			filenames = redditmemes.getSomeMemes(sub[choice], 10)
-			filenames += redditmemes.getSomeMemes(sub[choice+1],10)
-			filenames += redditmemes.getSomeMemes(sub[choice+2],10)
-			
-			if choice + 3 >= 5:
-				choice = -3			
+			choice = choice + 1
+			if choice > 5:
+				choice = 0
+			filenames += redditmemes.getSomeMemes(sub[choice],10)
+			choice = choice + 1
+			if choice > 5:
+				choice = 0
+			filenames += redditmemes.getSomeMemes(sub[choice],10)
+			choice = choice + 1
+			if choice > 5:
+				choice = 0			
 			
 			#write value of next subreddit back to file	
-			choice_s = repr(choice+3)
+			choice_s = repr(choice)
 			with open('subFile.txt','w') as subredditChoice:
 				subredditChoice.write(choice_s)
 			
